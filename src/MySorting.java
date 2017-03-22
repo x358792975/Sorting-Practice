@@ -40,14 +40,13 @@ public class MySorting {
 		count = 0;*/
 
 	}
-	public static void print(int[] arr, int count, int n){
+	public static void print(int[] arr, int cost, int length){
 		System.out.println("Here is the Sorted Result." );
-		for(int i=0; i<n;i++){ 
+		for(int i=0; i<length;i++){ 
 			System.out.print(arr[i]+" ");	
 		}
-		System.out.println("\nHere is the Cost: " + count);
-		System.out.println("Here is the lenghth of the array: " + n);
-		count = 0;
+		System.out.println("\nHere is the Cost: " + cost);
+		System.out.println("Here is the lenghth of the array: " + length);
 	}
 	public static void Merge_Sort(int[] arr, int p, int r){
 		if (p < r){
@@ -73,7 +72,7 @@ public class MySorting {
 		}
 	}
 	
-	public static void Quick_Sort(int[] arr, int p, int r){
+	public static void Quick_Sort(int[] arr, int length){
 		System.out.println("Quick Sort: ");
 		
 	}
@@ -85,7 +84,7 @@ public class MySorting {
 		//for the project.
 		
 		int[] arr = new int[100000] ;
-		int n = 0;
+		int length = 0;
 		String filename = "";
 		System.out.println("Please enter a number between 3 to 14." );
 		Scanner sc = new Scanner(System.in);
@@ -100,17 +99,18 @@ public class MySorting {
 			// store the read data into variable info
 			while (scanner.hasNextInt()) { 
 				//System.out.println(data);
-				arr[n] = scanner.nextInt();
-				n++;
+				arr[length] = scanner.nextInt();
+				length++;
 				}
 			System.out.println("Here is oringinal array.");
-			for(int i=0; i<n;i++){
+			for(int i=0; i<length;i++){
 				System.out.print(arr[i]+" ");
 			}
 			System.out.println("");
-			Insertion_Sort(arr,n);
-			//Merge_Sort(arr,0, n-1);
-			Quick_Sort(arr, 1, n);
+			Insertion_Sort(arr,length);
+			//Merge_Sort(arr,0, length-1);
+			//Heap_Sort();
+			Quick_Sort(arr,length);
 			
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
@@ -121,10 +121,5 @@ public class MySorting {
 			e.printStackTrace();
 			System.out.print("Faild to read the file!");
 		}	
-		/**
-		 * call the prinVertex method which is in class Split to 
-		 * display the result(adjacency list)
-		 */
 	}
-
 }
