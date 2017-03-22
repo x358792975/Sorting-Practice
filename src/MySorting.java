@@ -86,10 +86,16 @@ public class MySorting {
 		
 		int[] arr = new int[100000] ;
 		int n = 0;
+		String filename = "";
+		System.out.println("Please enter a number between 3 to 14." );
+		Scanner sc = new Scanner(System.in);
+		int in = sc.nextInt();
+		filename = "Num"+Integer.toString((int)(Math.pow(2,in)))+".txt";
+		System.out.println("The file name is: " +filename);
 		try {
 
 			// read the file
-			Scanner scanner = new Scanner(new File("Num8.txt"));
+			Scanner scanner = new Scanner(new File(filename));
 			//whole loop, when it reads to the end of file
 			// store the read data into variable info
 			while (scanner.hasNextInt()) { 
@@ -120,4 +126,5 @@ public class MySorting {
 		 * display the result(adjacency list)
 		 */
 	}
+
 }
