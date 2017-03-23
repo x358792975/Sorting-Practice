@@ -15,7 +15,7 @@ public class MySorting {
 	 * @param args
 	 * @throws IOException
 	 */
-	public static  void Insertion_Sort(int[] arr, int n){
+	public static void Insertion_Sort(int[] arr, int n){
 		System.out.println("Insertion Sort: ");
 		
 		int count = 0;
@@ -30,8 +30,8 @@ public class MySorting {
 			}
 			arr[j+1] = key;
 		}
-		print(arr,count,n);
-		/*System.out.println("Here is the Insertion Sort Result." );
+		print(arr,count,n);/*
+		System.out.println("Here is the Insertion Sort Result." );
 		for(int i=0; i<n;i++){ 
 			System.out.print(arr[i]+" ");	
 		}
@@ -72,18 +72,53 @@ public class MySorting {
 		}
 	}
 	
-	public static void Quick_Sort(int[] arr, int length){
+	public static void Quick_Sort(int[] arr, int low, int high){
 		System.out.println("Quick Sort: ");
+		/*int a = low;
+		int b = high-1;
+		int temp;
+		int mid = arr[(high+low)/2];
+		int cost =0;
+		while(a<=b){
+			
+			while (arr[a]<mid) a++;
+			while (arr[b]>mid) b--;
+			if(a<=b){
+				cost++;
+				temp = arr[a];
+				arr[a] = arr[b];
+				arr[b] = temp;
+				a++;
+				b--;
+			}
+		}
+		if (low < b) Quick_Sort(arr, low, b);
+		if (a < high) Quick_Sort(arr, a, high );
+		
+		print(arr,cost,high);*/
+		if(low < high){
+			int q = Pattition(arr,low,high);
+			Quick_Sort(arr, low,q-1);
+		}
 		
 	}
 	
-	
+	public static int Pattition(int[] arr,int low,int high){
+		int x = arr[high];
+		int i = low-1;
+		for(int j=low; j<=high-1;j++){
+			 
+		}
+		
+		
+		return 1 ;
+	}
 	public static void main(String args[]) throws IOException{
 
 		//creat a new class called Split which does processing and computing
 		//for the project.
 		
-		int[] arr = new int[100000] ;
+		int[] arr = new int[1000000] ;
 		int length = 0;
 		String filename = "";
 		System.out.println("Please enter a number between 3 to 14." );
@@ -110,7 +145,7 @@ public class MySorting {
 			Insertion_Sort(arr,length);
 			//Merge_Sort(arr,0, length-1);
 			//Heap_Sort();
-			Quick_Sort(arr,length);
+			//Quick_Sort(arr,0,length);
 			
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
@@ -122,4 +157,5 @@ public class MySorting {
 			System.out.print("Faild to read the file!");
 		}	
 	}
+	
 }
