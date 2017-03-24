@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author Xiang Cui
  *
  */
-public class MySorting {
+public class HeapSort {
 	/**
 	 * 
 	 * @param args
@@ -121,11 +121,11 @@ public class MySorting {
 		int[] arr = new int[1000000] ;
 		int length = 0;
 		String filename = "";
-		System.out.println("Please enter a number between 3 to 14." );
-		Scanner sc = new Scanner(System.in);
-		int in = sc.nextInt();
-		filename = "Num"+Integer.toString((int)(Math.pow(2,in)))+".txt";
-		System.out.println("The file name is: " +filename);
+		//System.out.println("Please enter a number between 3 to 14." );
+		//Scanner sc = new Scanner(System.in);
+		//int in = sc.nextInt();
+		//filename = "Num"+Integer.toString((int)(Math.pow(2,in)))+".txt";
+		//System.out.println("The file name is: " +filename);
 		try {
 
 			// read the file
