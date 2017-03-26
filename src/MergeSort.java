@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class MergeSort {
 	static int count =0;
 	public static void main(String[] args){	
-	System.out.println("Here is Merge Sort");
-	System.out.println("****************************");
+	//System.out.println("Here is Merge Sort");
+	//System.out.println("****************************");
 
 	for(int i=3; i<15;i++){
 		int[] arr = new int[1000000] ;
@@ -15,7 +15,7 @@ public class MergeSort {
 		String filename = "";	
 	
 	filename = "Num"+Integer.toString((int)(Math.pow(2,i)))+".txt";
-	System.out.println("The file name is: " +filename);
+	//System.out.println("The file name is: " +filename);
 	
 	try {
 
@@ -28,15 +28,15 @@ public class MergeSort {
 			arr[length] = scanner.nextInt();
 			length++;
 			}
-		System.out.println("Here is oringinal array.");
-		for(int j=0; j<length;j++){
-			System.out.print(arr[j]+" ");
-		}
-		System.out.println("\nThe length is "+length);
+		//System.out.println("Here is oringinal array.");
+		//for(int j=0; j<length;j++){
+			//System.out.print(arr[j]+" ");
+		//}
+		//System.out.println("\nThe length is "+length);
 		mergeSort(arr,0,length-1);
 
 		print(arr,count,length);
-		System.out.println("---------------------------------");
+		//System.out.println("---------------------------------");
 		
 	}catch (FileNotFoundException e){
 		e.printStackTrace();
@@ -96,7 +96,7 @@ public class MergeSort {
    	
     }
     public static void print(int[] arr, int cost, int length){
-		System.out.println("Here is the Sorted Result." );
+		//System.out.println("Here is the Sorted Result." );
 		if(length < 65){
 			for(int i=0; i<length;i++){ 
 				System.out.print(arr[i]+" ");	
@@ -107,7 +107,7 @@ public class MergeSort {
 			}
 		}
 		System.out.println("\nHere is the Cost: " + cost);
-		System.out.println("Here is the lenghth of the array: " + length);
+		//System.out.println("Here is the lenghth of the array: " + length);
 	}
  }
 

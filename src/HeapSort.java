@@ -10,152 +10,97 @@ import java.util.Scanner;
  *
  */
 public class HeapSort {
-	/**
-	 * 
-	 * @param args
-	 * @throws IOException
-	 */
-	public static void Insertion_Sort(int[] arr, int n){
-		System.out.println("Insertion Sort: ");
-		
-		int count = 0;
-		for (int i=2 ; i<n;i++){
-			int key = arr[i];
-			int j = i-1;
-			while (j >= 0 && arr[j] > key){
-				count++;
-				arr[j+1] = arr[j];
-				j = j-1;
-				
-			}
-			arr[j+1] = key;
-		}
-		print(arr,count,n);/*
-		System.out.println("Here is the Insertion Sort Result." );
-		for(int i=0; i<n;i++){ 
-			System.out.print(arr[i]+" ");	
-		}
-		System.out.println("Here is the Cost: " + count);
-		System.out.println("Here is the lenghth of the array: " + n);
-		count = 0;*/
-
-	}
-	public static void print(int[] arr, int cost, int length){
-		System.out.println("Here is the Sorted Result." );
-		for(int i=0; i<length;i++){ 
-			System.out.print(arr[i]+" ");	
-		}
-		System.out.println("\nHere is the Cost: " + cost);
-		System.out.println("Here is the lenghth of the array: " + length);
-	}
-	public static void Merge_Sort(int[] arr, int p, int r){
-		if (p < r){
-			int q = (int) Math.floor((p+r)/2);
-			Merge_Sort(arr, p, q);
-			Merge_Sort(arr,q+1,r);
-			Merge(arr,p,q,r);
-		}
-		
-	}
-	public static void Merge(int[] arr, int p, int q, int r){
-		int n1 = (q - p)+1;
-		int n2 = (r - q);
-		
-		int[] arr_l = new int[n1];
-		int[] arr_r = new int[n2];
-		
-		for(int i=1; i<=n1;i++){
-			arr_l[i] = arr[(p + i)-1];
-		}
-		for(int j=1; j<=n2;j++){
-			arr_r[j] = arr[q +j];
-		}
-	}
 	
-	public static void Quick_Sort(int[] arr, int low, int high){
-		System.out.println("Quick Sort: ");
-		/*int a = low;
-		int b = high-1;
-		int temp;
-		int mid = arr[(high+low)/2];
-		int cost =0;
-		while(a<=b){
-			
-			while (arr[a]<mid) a++;
-			while (arr[b]>mid) b--;
-			if(a<=b){
-				cost++;
-				temp = arr[a];
-				arr[a] = arr[b];
-				arr[b] = temp;
-				a++;
-				b--;
-			}
-		}
-		if (low < b) Quick_Sort(arr, low, b);
-		if (a < high) Quick_Sort(arr, a, high );
-		
-		print(arr,cost,high);*/
-		if(low < high){
-			int q = Pattition(arr,low,high);
-			Quick_Sort(arr, low,q-1);
-		}
-		
-	}
+	static int count =0;
 	
-	public static int Pattition(int[] arr,int low,int high){
-		int x = arr[high];
-		int i = low-1;
-		for(int j=low; j<=high-1;j++){
-			 
-		}
-		
-		
-		return 1 ;
-	}
-	public static void main(String args[]) throws IOException{
-
-		//creat a new class called Split which does processing and computing
-		//for the project.
-		
-		int[] arr = new int[1000000] ;
-		int length = 0;
-		String filename = "";
-		//System.out.println("Please enter a number between 3 to 14." );
-		//Scanner sc = new Scanner(System.in);
-		//int in = sc.nextInt();
-		//filename = "Num"+Integer.toString((int)(Math.pow(2,in)))+".txt";
+	public static void main(String[] args){	
+		//System.out.println("Here is Heap Sort");
+		//System.out.println("****************************");
+		for(int i=3; i<15;i++){
+			int[] arr = new int[1000000] ;
+			int length = 0;
+			String filename = "";	
+		filename = "Num"+Integer.toString((int)(Math.pow(2,i)))+".txt";
 		//System.out.println("The file name is: " +filename);
 		try {
-
-			// read the file
 			Scanner scanner = new Scanner(new File(filename));
-			//whole loop, when it reads to the end of file
-			// store the read data into variable info
 			while (scanner.hasNextInt()) { 
-				//System.out.println(data);
 				arr[length] = scanner.nextInt();
 				length++;
 				}
-			System.out.println("Here is oringinal array.");
-			for(int i=0; i<length;i++){
-				System.out.print(arr[i]+" ");
-			}
-			System.out.println("");
-			Insertion_Sort(arr,length);
-			//Merge_Sort(arr,0, length-1);
-			//Heap_Sort();
-			//Quick_Sort(arr,0,length);
+			//System.out.println("Here is oringinal array.");
+			//for(int j=0; j<length;j++){
+				//System.out.print(arr[j]+" ");
+			//}
+			//System.out.println("\nThe length is "+length);
+			//System.out.println("");
+			HeapSort(arr,length);
+			//System.out.println("---------------------------------");
+			print(arr,count,length);
+
 			
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 			System.out.print("File can't be found! ");
 		}
-		// failure of reading the file.
 		catch (IOException e) {
 			e.printStackTrace();
 			System.out.print("Faild to read the file!");
 		}	
+		}
 	}
-	
-}
+		public static void HeapSort(int[] arr, int size){
+			Build_Max_Heap(arr, size);
+			for(int i=size-1; i>=0; i--){
+				int temp = arr[0];
+				arr[0] = arr[i];
+				arr[i] = temp;
+				Max_Heapify(arr,1,i);
+			}
+		}
+		public static void Max_Heapify(int[] arr, int index, int size){
+			int l = index *2;
+			int r = l+1;
+			int largest =0;
+
+			if( l <= size && arr[l-1] > arr[index -1]){
+				largest = l;
+			} else {
+				largest = index;}
+			if(r <= size && arr[r-1] > arr[largest-1]){
+				largest = r;
+			}
+			if (largest != index){
+				int temp = arr[index-1];
+				count+=1;
+				arr[index-1]= arr[largest-1];
+				arr[largest-1]=temp;
+				Max_Heapify(arr,largest,size);
+			}
+			
+		}
+
+		public static void Build_Max_Heap(int[] arr, int size) {
+			for(int i = size/2; i>0;i--){
+				Max_Heapify(arr,i,size);
+			}
+			
+		}
+		
+
+	    public static void print(int[] arr, int cost, int length){
+			//System.out.println("Here is the Sorted Result." );
+			if(length < 65){
+				for(int i=0; i<length;i++){ 
+					System.out.print(arr[i]+" ");	
+				}
+			} else {
+				for(int i =50; i<100;i++){
+					System.out.print(arr[i]+" ");
+				}
+			}
+			
+			System.out.println("\nHere is the Cost: " + cost);
+			//System.out.println("Here is the lenghth of the array: " + length);
+		}
+	 }
